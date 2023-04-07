@@ -10,22 +10,13 @@ import os
 app = Flask(__name__)
 
 dynamodb = boto3.resource('dynamodb',region_name=os.environ['AWS_REGION'])
-table = dynamodb.Table(os.environ['DDB_TABLE'])
+table_liv1 = dynamodb.Table(os.environ['DDB_TABLE_LIV1'])
 
-print(os.environ['DDB_TABLE']|"-"|os.environ['AWS_REGION'])
 
-def get_movie(title, year):
+
+def get_user(id):
     try:
-        response = table.get_item(Key={'year': year, 'title': title})
-    except ClientError as e:
-        print(e.response['Error']['Message'])
-    else:
-        return response
-
-
-def delete_movie(title, year):
-    try:
-        response = table.delete_item(Key={'year': year, 'title': title})
+        response = table.get_item(Key={'Id': id})
     except ClientError as e:
         print(e.response['Error']['Message'])
     else:
@@ -37,40 +28,36 @@ def home():
   return render_template('index.html')
 
 
-# POST /api/movie data: {name:}
-@app.route('/api/movie', methods=['POST'])
-def post_movie():
+# PUT /api/user data: {name:}
+@app.route('/api/user', methods=['PUT'])
+def put_user():
     request_data = request.get_json()
     try:
-      plot = request_data['info']['plot']
+      id = request_data['Id']
     except:
       plot = "NA"
     try:
-      actors = request_data['info']['actors'] 
+      nome = request_data['info']['nome'] 
     except:
-      actors = ["NA"]
+      nome = ["NA"]
     try:
-      release_date = request_data['info']['release_date']
+      cognome = request_data['cognome']['cognome']
     except:
-      release_date = "NA"
+      cognome = "NA"
     try:
-      genres = request_data['info']['genres']
+      attivo = request_data['info']['attivo']
     except:
-      genres = ["NA"]
+      attivo = ["NA"]
     try:
-      image_url = request_data['info']['image_url']
+      username = request_data['info']['username']
     except:
-      image_url = "NA"
+      username = "NA"
     try:
-      directors = request_data['info']['directors'] 
+      password = request_data['info']['password'] 
     except:
-      directors = ["NA"]
+      password = ["NA"]
     try:
-      rating = request_data['info']['rating'] 
-    except:
-      rating = 0
-    try:
-      rank = request_data['info']['rank']
+      rank = request_data['info']['rank'] 
     except:
       rank = 0
     try:
@@ -79,89 +66,25 @@ def post_movie():
       running_time_secs = 0
     response = table.put_item(
        Item={
-            'year': request_data['year'],
-            'title': request_data['title'],
-            'info': {
-                'plot': plot,
-                'rating': rating,
-                'actors': actors,
-                'release_date': release_date,
-                'genres' : genres,
-                'image_url': image_url,
-                'directors': directors,
-                'rank': rank,
-                'running_time_secs': running_time_secs
-            }
+        'Id': request_data['Id'],
+        'info': {
+            'nome': nome,
+            'cognome': cognome,
+            'attivo': true,
+            'username': attivo,
+            'password': password,
+            'rank': rank
         }
+       }
     )
     return response
 
-# PUT /api/movie data: {name:}
-@app.route('/api/movie', methods=['PUT'])
-def put_movie():
-    request_data = request.get_json()
-    try:
-      plot = request_data['info']['plot']
-    except:
-      plot = "NA"
-    try:
-      actors = request_data['info']['actors'] 
-    except:
-      actors = ["NA"]
-    try:
-      release_date = request_data['info']['release_date']
-    except:
-      release_date = "NA"
-    try:
-      genres = request_data['info']['genres']
-    except:
-      genres = ["NA"]
-    try:
-      image_url = request_data['info']['image_url']
-    except:
-      image_url = "NA"
-    try:
-      directors = request_data['info']['directors'] 
-    except:
-      directors = ["NA"]
-    try:
-      rating = request_data['info']['rating'] 
-    except:
-      rating = 0
-    try:
-      rank = request_data['info']['rank']
-    except:
-      rank = 0
-    try:
-      running_time_secs = request_data['info']['running_time_secs']
-    except:
-      running_time_secs = 0
-    response = table.put_item(
-       Item={
-            'year': request_data['year'],
-            'title': request_data['title'],
-            'info': {
-                'plot': plot,
-                'rating': rating,
-                'actors': actors,
-                'release_date': release_date,
-                'genres' : genres,
-                'image_url': image_url,
-                'directors': directors,
-                'rank': rank,
-                'running_time_secs': running_time_secs
-            }
-        }
-    )
-    return response
-
-# GET /api/movie?year=<integer>&title=<string>
-@app.route('/api/movie')
-def get():
+# GET /api/user?id=<string>
+@app.route('/api/user')
+def getuser():
     query_params = request.args.to_dict(flat=False)
-    year = int(query_params['year'][0])
-    title = str(query_params['title'][0])
-    response = get_movie(title, year)
+    id = query_params['id'][0]
+    response = get_user(title, year)
     if (response['ResponseMetadata']['HTTPStatusCode'] == 200):
        if ('Item' in response):
            return { 'Item': str(response['Item']) }
@@ -171,21 +94,59 @@ def get():
        'response': response
     }
 
-# Delete /api/movie
-@app.route('/api/movie', methods=['DELETE'])
-def del_movie():
-   query_params = request.args.to_dict(flat=False)
-   year = int(query_params['year'][0])
-   title = str(query_params['title'][0])
-   response = delete_movie(title, year)
-   if (response['ResponseMetadata']['HTTPStatusCode'] == 200):
-       return {
-           'msg': 'Delete successful',
+
+
+@app.route('/api/movie', methods=['POST'])
+def post_user():
+    request_data = request.get_json()
+    try:
+      id = request_data['Id']
+    except:
+      plot = "NA"
+    try:
+      nome = request_data['info']['nome'] 
+    except:
+      nome = ["NA"]
+    try:
+      cognome = request_data['cognome']['cognome']
+    except:
+      cognome = "NA"
+    try:
+      attivo = request_data['info']['attivo']
+    except:
+      attivo = ["NA"]
+    try:
+      username = request_data['info']['username']
+    except:
+      username = "NA"
+    try:
+      password = request_data['info']['password'] 
+    except:
+      password = ["NA"]
+    try:
+      rank = request_data['info']['rank'] 
+    except:
+      rank = 0
+    try:
+      running_time_secs = request_data['info']['running_time_secs']
+    except:
+      running_time_secs = 0
+    response = table.put_item(
+        Item={
+        'Id': request_data['Id'],
+        'info': {
+            'nome': nome,
+            'cognome': cognome,
+            'attivo': true,
+            'username': attivo,
+            'password': password,
+            'rank': rank
+        }
        }
-   return { 
-       'msg': 'error occurred',
-       'response': response
-   }
+    )
+    return response
+
+
 
 if __name__ == "__main__":
    app.run(host="0.0.0.0", port=8080)
