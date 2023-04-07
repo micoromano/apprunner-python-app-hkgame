@@ -7,7 +7,7 @@ def load_users(users):
     dynamodb = boto3.resource('dynamodb')
     table = dynamodb.Table('Items')
     for user in users:
-        id = int(user['id'])
+        id = int(user['Id'])
         title = user['info']
         print("Adding user:", id, title)
         table.put_item(Item=user)
