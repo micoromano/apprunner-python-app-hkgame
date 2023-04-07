@@ -1,23 +1,7 @@
 {
     "AttributeDefinitions": [
     {
-        "AttributeName": "Deleted", 
-        "AttributeType": "S"
-    }, 
-    {
         "AttributeName": "Id", 
-        "AttributeType": "S"
-    },
-    {
-        "AttributeName": "User", 
-        "AttributeType": "S"
-    },
-    {
-        "AttributeName": "Password", 
-        "AttributeType": "S"
-    },
-    {
-        "AttributeName": "Active", 
         "AttributeType": "S"
     }
     ], 
@@ -30,9 +14,6 @@
         {
             "KeyType": "HASH", 
             "AttributeName": "Id"
-        }, {
-            "KeyType": "HASH", 
-            "AttributeName": "Deleted"
         }
     ]
 }
