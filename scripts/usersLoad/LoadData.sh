@@ -1,2 +1,2 @@
 #!/bin/bash
-python3 scripts/UsersLoadData.py
+python3 UsersLoadData.py
