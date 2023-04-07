@@ -12,6 +12,7 @@ app = Flask(__name__)
 dynamodb = boto3.resource('dynamodb',region_name=os.environ['AWS_REGION'])
 table = dynamodb.Table(os.environ['DDB_TABLE'])
 
+print(os.environ['DDB_TABLE']|"-"|os.environ['AWS_REGION'])
 
 def get_movie(title, year):
     try:
