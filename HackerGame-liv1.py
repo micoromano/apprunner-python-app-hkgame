@@ -10,7 +10,7 @@ import os
 app = Flask(__name__)
 
 dynamodb = boto3.resource('dynamodb',region_name=os.environ['AWS_REGION'])
-table_liv1 = dynamodb.Table(os.environ['DDB_TABLE_LIV1'])
+table = dynamodb.Table(os.environ['DDB_TABLE_LIV1'])
 
 
 
@@ -84,7 +84,7 @@ def put_user():
 def getuser():
     query_params = request.args.to_dict(flat=False)
     id = query_params['id'][0]
-    response = get_user(title, year)
+    response = get_user(id)
     if (response['ResponseMetadata']['HTTPStatusCode'] == 200):
        if ('Item' in response):
            return { 'Item': str(response['Item']) }
@@ -96,7 +96,7 @@ def getuser():
 
 
 
-@app.route('/api/movie', methods=['POST'])
+@app.route('/api/user', methods=['POST'])
 def post_user():
     request_data = request.get_json()
     try:
