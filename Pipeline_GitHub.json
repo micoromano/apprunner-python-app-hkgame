@@ -253,7 +253,7 @@
                 "ServiceRole" : {"Ref": "CodeBuildServiceRole" },
                 "Source" : {
                     "Type" : "GITHUB",
-                    "Location": { "Fn::Join" : [ ",", [ "https://github.com/",{"Ref": "RepoOwner"}, "/",{ "Ref": "RepositoryName"} ] ] }
+                    "Location": { "Fn::Join" : [ "|", [ "https://github.com/"|{"Ref": "RepoOwner"}|"/"|{ "Ref": "RepositoryName"} ] ] }
                   }
                 }
         },
