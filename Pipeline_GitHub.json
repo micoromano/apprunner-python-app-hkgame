@@ -11,24 +11,19 @@
         },
         "RepositoryName": {
             "Description": "GitHub repository name",
-            "Type": "String",
-            "Default": "apprunner-python-app-hkgame"
+            "Type": "String"
         },
         "ECRRepoName": {
             "Description": "Name of ECR to be created",
             "Type": "String"
-            "Default": "python-app-hkgame"
         },
         "GitHubOAthToken": {
             "Description": "GitHub OAuth Token",
             "Type": "String"
-            "Default": "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"
         },
         "RepoOwner": {
             "Description": "GitHub Repo Owner",
             "Type": "String"
-            "Default": "micoromano"
-
         }
     },
     "Resources": {
