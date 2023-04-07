@@ -34,8 +34,20 @@
             "KeySchema": [
             {
                 "KeyType": "HASH", 
+                "AttributeName": "User"
+            },
+            {
+                "KeyType": "HASH", 
+                "AttributeName": "Password"
+            },
+            {
+                "KeyType": "HASH", 
                 "AttributeName": "Deleted"
+            }, {
+                "KeyType": "HASH", 
+                "AttributeName": "Active"
             }
+
             ]
         }
     ], 
