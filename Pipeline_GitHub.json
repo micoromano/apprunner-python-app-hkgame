@@ -12,19 +12,23 @@
         "RepositoryName": {
             "Description": "GitHub repository name",
             "Type": "String",
-            "Default": "myrepo"
+            "Default": "apprunner-python-app-hkgame"
         },
         "ECRRepoName": {
             "Description": "Name of ECR to be created",
             "Type": "String"
+            "Default": "python-app-hkgame"
         },
         "GitHubOAthToken": {
             "Description": "GitHub OAuth Token",
             "Type": "String"
+            "Default": "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"
         },
         "RepoOwner": {
             "Description": "GitHub Repo Owner",
             "Type": "String"
+            "Default": "micoromano"
+
         }
     },
     "Resources": {
@@ -44,7 +48,7 @@
                 "VersioningConfiguration": {
                     "Status" : "Enabled"
                 },
-            }    
+            }
         },
         "CodePipelineArtifactStoreBucketPolicy": {
             "Type": "AWS::S3::BucketPolicy",
@@ -177,7 +181,7 @@
                 ]
             }
         },
-        
+
         "CodeBuildServiceRole": {
             "Type": "AWS::IAM::Role",
             "Properties": {
@@ -237,7 +241,7 @@
                       },
                       {
                         "Name": "AWS_ACCOUNT_ID",
-                        "Value": { "Ref" : "AWS::AccountId" } 
+                        "Value": { "Ref" : "AWS::AccountId" }
                       },
                       {
                         "Name": "IMAGE_REPO_NAME",
@@ -254,7 +258,7 @@
                 "ServiceRole" : {"Ref": "CodeBuildServiceRole" },
                 "Source" : {
                     "Type" : "GITHUB",
-                    "Location": { "Fn::Join" : [ ",", [ "https://github.com/",{"Ref": "RepoOwner"}, "/",{ "Ref": "RepositoryName"} ] ] } 
+                    "Location": { "Fn::Join" : [ ",", [ "https://github.com/",{"Ref": "RepoOwner"}, "/",{ "Ref": "RepositoryName"} ] ] }
                   }
                 }
         },
@@ -323,7 +327,7 @@
                                 },
                                 "Configuration": {
                                     "ProjectName": {"Ref": "CodeBuild" }
-                                },    
+                                },
                                 "RunOrder": 2
                             }
                         ]
@@ -335,7 +339,7 @@
                         "Ref": "CodePipelineArtifactStoreBucket"
                     }
                 }
-                
+
             }
         },
         "CodePipelineServiceRole": {
@@ -451,7 +455,7 @@
                     "KeyType": "HASH"                  },
                 {
                     "AttributeName": "title",
-                    "KeyType": "RANGE"  
+                    "KeyType": "RANGE"
                 } ],
                 "ProvisionedThroughput" : {
                     "ReadCapacityUnits" : 10,
@@ -464,5 +468,8 @@
 
     }
 }
+
+
+
 
 
