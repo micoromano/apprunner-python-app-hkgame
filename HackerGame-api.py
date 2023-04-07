@@ -94,6 +94,13 @@ def getuser():
        'response': response
     }
 
+# GET /api/user
+@app.route('/api/users')
+def getuser():
+    query_params = request.args.to_dict(flat=False)
+    id = query_params['id'][0]
+    response = table.scan()
+    return response
 
 
 @app.route('/api/user', methods=['POST'])
