@@ -70,8 +70,8 @@ def put_user():
         'info': {
             'nome': nome,
             'cognome': cognome,
-            'attivo': true,
-            'username': attivo,
+            'attivo': attivo,
+            'username': username,
             'password': password,
             'rank': rank
         }
@@ -137,8 +137,8 @@ def post_user():
         'info': {
             'nome': nome,
             'cognome': cognome,
-            'attivo': true,
-            'username': attivo,
+            'attivo': attivo,
+            'username': username,
             'password': password,
             'rank': rank
         }
