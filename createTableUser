@@ -60,6 +60,9 @@
         {
             "KeyType": "HASH", 
             "AttributeName": "Id"
+        }, {
+            "KeyType": "HASH", 
+            "AttributeName": "Deleted"
         }
     ]
 }
