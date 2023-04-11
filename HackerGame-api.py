@@ -6,8 +6,11 @@ from pprint import pprint
 import boto3
 from botocore.exceptions import ClientError
 import os
+from fastapi import FastAPI
 
-app = Flask(__name__)
+
+#app = Flask(__name__)
+app = FastAPI()
 
 dynamodb = boto3.resource('dynamodb',region_name=os.environ['AWS_REGION'])
 table = dynamodb.Table(os.environ['DDB_TABLE_LIV1'])
@@ -23,13 +26,15 @@ def get_user(id):
         return response
 
 #Home Page
-@app.route('/')
+#@app.route('/')
+@app.get("/")
 def home():
   return render_template('index.html')
 
 
 # PUT /api/user data: {name:}
-@app.route('/api/user', methods=['PUT'])
+@app.put("/api/user")
+#@app.route('/api/user', methods=['PUT'])
 def put_user():
     request_data = request.get_json()
     try:
@@ -80,7 +85,8 @@ def put_user():
     return response
 
 # GET /api/user?id=<string>
-@app.route('/api/user')
+@app.post("/api/user")
+#@app.route('/api/user')
 def getuser():
     query_params = request.args.to_dict(flat=False)
     id = query_params['id'][0]
@@ -95,13 +101,15 @@ def getuser():
     }
 
 # GET /api/user
-@app.route('/api/users')
+@app.get("/api/users")
+#@app.route('/api/users')
 def getusers():
     response = table.scan()
     return response
 
 
-@app.route('/api/user', methods=['POST'])
+@app.post("/api/user")
+#@app.route('/api/user', methods=['POST'])
 def post_user():
     request_data = request.get_json()
     try:
