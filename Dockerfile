@@ -5,5 +5,5 @@ RUN yum install python3.7 -y && curl -O https://bootstrap.pypa.io/get-pip.py && 
 COPY . /app
 WORKDIR /app
 RUN pip3 install -r requirements.txt
-CMD ["uvicorn", "app.HackerGame-api:app", "--host", "0.0.0.0", "--port", "8080"]
+CMD ["uvicorn", "HackerGame-api:app", "--host", "0.0.0.0", "--port", "8080"]
 EXPOSE 8080
