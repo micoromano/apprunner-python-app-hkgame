@@ -24,6 +24,10 @@
         "RepoOwner": {
             "Description": "GitHub Repo Owner",
             "Type": "String"
+        },
+        "AppPipelineName": {
+            "Description": "GitHub Repo Owner",
+            "Type": "String"
         }
     },
     "Resources": {
@@ -253,7 +257,7 @@
                 "ServiceRole" : {"Ref": "CodeBuildServiceRole" },
                 "Source" : {
                     "Type" : "GITHUB",
-                    "Location": { "Fn::Join" : [ "|", [ "https://github.com/"|{"Ref": "RepoOwner"}|"/"|{ "Ref": "RepositoryName"} ] ] }
+                    "Location": { "Fn::Join" : [ "/", [ "https://github.com",{"Ref": "RepoOwner"},{ "Ref": "RepositoryName"} ] ] }
                   }
                 }
         },
@@ -261,7 +265,7 @@
         "AppPipeline": {
             "Type": "AWS::CodePipeline::Pipeline",
             "Properties": {
-                "Name": "Apprunner-events-pipeline",
+                "Name": {"Ref": "AppPipelineName"},
                 "RoleArn": {
                     "Fn::GetAtt": [
                         "CodePipelineServiceRole",

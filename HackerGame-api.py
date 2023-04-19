@@ -14,6 +14,9 @@ app = FastAPI()
 
 dynamodb = boto3.resource('dynamodb',region_name=os.environ['AWS_REGION'])
 table = dynamodb.Table(os.environ['DDB_TABLE_LIV1'])
+tableQuestions = dynamodb.Table(os.environ['DDB_QUESTIONS'])
+tableUserdata = dynamodb.Table(os.environ['DDB_UDATA'])
+
 
 
 
@@ -159,7 +162,69 @@ def post_user():
     )
     return response
 
+def get_questions(id):
+    try:
+        response = tableQuestions.get_item(Key={'id': id})
+    except ClientError as e:
+        print(e.response['Error']['Message'])
+    else:
+        return response
 
+@app.get("/api/levelQ6R")
+#@app.route('/api/levelQ6R')
+def getquestions():
+    query_params = request.args.to_dict(flat=False)
+    id = query_params['id'][0]
+    userid = query_params['id'][0]
+
+    if(id==0){
+     id = random.randint(0, 5)
+    }
+    response = get_questions(id)
+    if (response['ResponseMetadata']['HTTPStatusCode'] == 200):
+       if ('Item' in response):
+           return { 'Item': str(response['Item']) }
+       return { 'msg' : 'Item not found!' }
+    return {
+       'msg': 'error occurred',
+       'response': response
+    }
+
+@app.put("/api/levelQ6R")
+#@app.route('/api/levelQ6R')
+def getquestions():
+    query_params = request.args.to_dict(flat=False)
+    id = query_params['id'][0]
+    if(id==0){
+     id = random.randint(0, 5)
+    }
+    response = get_questions(id)
+    if (response['ResponseMetadata']['HTTPStatusCode'] == 200):
+       if ('Item' in response):
+           return { 'Item': str(response['Item']) }
+       return { 'msg' : 'Item not found!' }
+    return {
+       'msg': 'error occurred',
+       'response': response
+    }
+def setuserdata(userdata):
+
+    response = tableUserdata.put_item(
+            Item={
+            'iduser': userdata.iduser,
+            'type': userdata.type,
+            'info': userdata.info
+           }
+        )
+        return response
+
+def getuserdata(userdata):
+    try:
+        response = tableUserdata.get_item(Key={'id': userdata.id,'type':userdata.type})
+    except ClientError as e:
+        print(e.response['Error']['Message'])
+    else:
+        return response
 
 if __name__ == "__main__":
    app.run(host="0.0.0.0", port=8080)
