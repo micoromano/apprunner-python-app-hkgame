@@ -192,7 +192,7 @@ def getquestions():
             'iduser': iduser,
             'type' : 'template'
             'info': {
-                'id': nome
+                'id': idTpl
             }
            }
        Udata={
