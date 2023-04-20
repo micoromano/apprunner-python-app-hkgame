@@ -170,17 +170,37 @@ def get_questions(id):
     else:
         return response
 
+@app.post("/api/udata")
+#@app.route('/api/udata')
+def putUserData():
+    query_params = request.args.to_dict(flat=False)
+    request_data = request.get_json()
+    response = setuserdata(request_data)
+    return response
+
+
 @app.get("/api/levelQ6R")
 #@app.route('/api/levelQ6R')
 def getquestions():
     query_params = request.args.to_dict(flat=False)
     id = query_params['id'][0]
-    userid = query_params['id'][0]
+    iduser = query_params['idu'][0]
 
-    if(id==0){
-     id = random.randint(0, 5)
-    }
-    response = get_questions(id)
+    if(id==0):
+     idTpl = random.randint(0, 5)
+        Item={
+            'iduser': iduser,
+            'type' : 'template'
+            'info': {
+                'id': nome
+            }
+           }
+       Udata={
+            'iduser': iduser,
+            'type' : 'template'
+           }
+    userTplInfo = setuserdata(Udata)
+    response = get_questions(userTplInfo['info']['id'] )
     if (response['ResponseMetadata']['HTTPStatusCode'] == 200):
        if ('Item' in response):
            return { 'Item': str(response['Item']) }
@@ -190,37 +210,20 @@ def getquestions():
        'response': response
     }
 
-@app.put("/api/levelQ6R")
-#@app.route('/api/levelQ6R')
-def getquestions():
-    query_params = request.args.to_dict(flat=False)
-    id = query_params['id'][0]
-    if(id==0){
-     id = random.randint(0, 5)
-    }
-    response = get_questions(id)
-    if (response['ResponseMetadata']['HTTPStatusCode'] == 200):
-       if ('Item' in response):
-           return { 'Item': str(response['Item']) }
-       return { 'msg' : 'Item not found!' }
-    return {
-       'msg': 'error occurred',
-       'response': response
-    }
 def setuserdata(userdata):
 
     response = tableUserdata.put_item(
             Item={
-            'iduser': userdata.iduser,
-            'type': userdata.type,
-            'info': userdata.info
+            'iduser': userdata['iduser'],
+            'type': userdata['type'],
+            'info': userdata['info']
            }
         )
         return response
 
 def getuserdata(userdata):
     try:
-        response = tableUserdata.get_item(Key={'id': userdata.id,'type':userdata.type})
+        response = tableUserdata.get_item(Key={'id': userdata['info']['id'],'type':userdata['type']})
     except ClientError as e:
         print(e.response['Error']['Message'])
     else:
