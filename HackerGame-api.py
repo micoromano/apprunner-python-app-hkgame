@@ -188,18 +188,8 @@ def getquestions():
 
     if(id==0):
      idTpl = random.randint(0, 5)
-        Item={
-            'iduser': iduser,
-            'type' : 'template'
-            'info': {
-                'id': idTpl
-            }
-           }
-       Udata={
-            'iduser': iduser,
-            'type' : 'template'
-           }
-    userTplInfo = setuserdata(Udata)
+     itemTpl = itemTpl(_self,iduser,idTpl)
+    userTplInfo = setuserdata(itemTpl)
     response = get_questions(userTplInfo['info']['id'] )
     if (response['ResponseMetadata']['HTTPStatusCode'] == 200):
        if ('Item' in response):
@@ -219,7 +209,7 @@ def setuserdata(userdata):
             'info': userdata['info']
            }
         )
-        return response
+    return response
 
 def getuserdata(userdata):
     try:
@@ -228,6 +218,28 @@ def getuserdata(userdata):
         print(e.response['Error']['Message'])
     else:
         return response
+
+
+
+class itemTpl:
+     iduser = ""
+     type = ""
+     info = ""
+     def __init__(self, iduser, idTpl):
+         self.iduser = iduser
+         self.type ='tpl'
+         self.info = """info"": {""id"":"""+idTpl+"""}"""
+
+class itemLiv1:
+     iduser =""
+     type =""
+     info = """info"": {""id"":"""+idTpl+"""}"""
+     def __init__(self, iduser, log):
+         self.iduser = iduser
+         self.type ='liv1'
+         self.info = """info"": {""logs"":"""+log+"""}"""
+
+
 
 if __name__ == "__main__":
    app.run(host="0.0.0.0", port=8080)
