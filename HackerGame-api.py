@@ -231,9 +231,9 @@ class itemTpl:
          self.info = """info"": {""id"":"""+idTpl+"""}"""
 
 class itemLiv1:
-     iduser =""
-     type =""
-     info = """info"": {""id"":"""+idTpl+"""}"""
+     iduser = ""
+     type = ""
+     info = ""
      def __init__(self, iduser, log):
          self.iduser = iduser
          self.type ='liv1'
