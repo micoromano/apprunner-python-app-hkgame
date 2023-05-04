@@ -1,8 +1,8 @@
 [
     {
         "id": "1",
-        "level":"1",
         "info": {
+            "level":"1",
             "Title": "Ready to Pwning ?",
             "Description": "In this level you will have to intercept the password in a site login.... Thank you for choosing the Blue Pill ..",
             "DescriptionHTD": "access the site at the link below, find the password, enter the password in the box below and click on complete the level to send the answer, once the answer has been sent the level it will be inaccessible for the whole team.... GoodWork ..",
@@ -11,8 +11,8 @@
         }
     },{
     "id": "2",
-    "level":"1",
     "info": {
+        "level":"1",
         "Title": "Ready to Pwning ?",
         "Description": "In this level you will have to intercept the password in a site login.... Thank you for choosing the Blue Pill ..",
         "DescriptionHTD": "access the site at the link below, find the password, enter the password in the box below and click on complete the level to send the answer, once the answer has been sent the level it will be inaccessible for the whole team.... GoodWork ..",
@@ -21,8 +21,8 @@
     }
 },{
     "id": "3",
-    "level":"1",
     "info": {
+        "level":"1",
         "Title": "Ready to Pwning ?",
         "Description": "In this level you will have to intercept the password in a site login.... Thank you for choosing the Blue Pill ..",
         "DescriptionHTD": "access the site at the link below, find the password, enter the password in the box below and click on complete the level to send the answer, once the answer has been sent the level it will be inaccessible for the whole team.... GoodWork ..",
@@ -31,8 +31,8 @@
     }
 },{
     "id": "4",
-    "level":"1",
     "info": {
+        "level":"1",
         "Title": "Ready to Pwning ?",
         "Description": "In this level you will have to intercept the password in a site login.... Thank you for choosing the Blue Pill ..",
         "DescriptionHTD": "access the site at the link below, find the password, enter the password in the box below and click on complete the level to send the answer, once the answer has been sent the level it will be inaccessible for the whole team.... GoodWork ..",
@@ -41,8 +41,8 @@
     }
 },{
     "id": "5",
-    "level":"1",
     "info": {
+        "level":"1",
         "Title": "Ready to Pwning ?",
         "Description": "In this level you will have to intercept the password in a site login.... Thank you for choosing the Blue Pill ..",
         "DescriptionHTD": "access the site at the link below, find the password, enter the password in the box below and click on complete the level to send the answer, once the answer has been sent the level it will be inaccessible for the whole team.... GoodWork ..",
@@ -51,8 +51,8 @@
     }
 },{
     "id": "6",
-    "level":"1",
     "info": {
+        "level":"1",
         "Title": "Ready to Pwning ?",
         "Description": "In this level you will have to intercept the password in a site login.... Thank you for choosing the Blue Pill ..",
         "DescriptionHTD": "access the site at the link below, find the password, enter the password in the box below and click on complete the level to send the answer, once the answer has been sent the level it will be inaccessible for the whole team.... GoodWork ..",
