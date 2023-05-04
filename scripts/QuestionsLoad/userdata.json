@@ -1,6 +1,6 @@
 [
     {
-        "Id": "1",
+        "id": "1",
         "level":"1",
         "info": {
             "Title": "Ready to Pwning ?",
@@ -10,7 +10,7 @@
             "url": "http://a4835dbad60fc4590addbd1e70bc622e-2044858126.eu-central-1.elb.amazonaws.com/t1/"
         }
     },{
-    "Id": "2",
+    "id": "2",
     "level":"1",
     "info": {
         "Title": "Ready to Pwning ?",
@@ -20,7 +20,7 @@
         "url": "http://a4835dbad60fc4590addbd1e70bc622e-2044858126.eu-central-1.elb.amazonaws.com/t2/"
     }
 },{
-    "Id": "3",
+    "id": "3",
     "level":"1",
     "info": {
         "Title": "Ready to Pwning ?",
@@ -30,7 +30,7 @@
         "url": "http://a4835dbad60fc4590addbd1e70bc622e-2044858126.eu-central-1.elb.amazonaws.com/t3/"
     }
 },{
-    "Id": "4",
+    "id": "4",
     "level":"1",
     "info": {
         "Title": "Ready to Pwning ?",
@@ -40,7 +40,7 @@
         "url": "http://a4835dbad60fc4590addbd1e70bc622e-2044858126.eu-central-1.elb.amazonaws.com/t4/"
     }
 },{
-    "Id": "5",
+    "id": "5",
     "level":"1",
     "info": {
         "Title": "Ready to Pwning ?",
@@ -50,7 +50,7 @@
         "url": "http://a4835dbad60fc4590addbd1e70bc622e-2044858126.eu-central-1.elb.amazonaws.com/t5/"
     }
 },{
-    "Id": "6",
+    "id": "6",
     "level":"1",
     "info": {
         "Title": "Ready to Pwning ?",
